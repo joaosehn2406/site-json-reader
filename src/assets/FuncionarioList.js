@@ -1,4 +1,4 @@
-const funcionarrios = [
+const funfu = [
     {
         "id": 1,
         "nome": "Alonzo Birden",
@@ -100,3 +100,5 @@ const funcionarrios = [
         }
     }
 ]
+
+export default funfu
