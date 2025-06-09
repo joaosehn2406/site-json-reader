@@ -1,8 +1,9 @@
 .header-container {
-    position: relative;
+    position: fixed;
     display: flex;
     align-items: center;
     background-color: #ffffff;
+    width: 100vw;
     height: 90px;
     padding: 0 15vw;
     gap: 124px;
@@ -43,7 +44,7 @@ a, .link-home {
 
 .bt-container {
     display: flex;
-    margin-right: 150px;
+    margin-right: 700px;
     gap: 60px;
 }
 
