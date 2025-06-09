@@ -6,7 +6,8 @@ function CardFuncionario({ funcionario }) {
             width: '250px',
             margin: '20px',
             border: '1px solid #ccc',
-            textAlign: 'center'
+            textAlign: 'center',
+            justifyContent: 'center',
         }}>
             <div style={{ backgroundColor: 'black', padding: '10px' }}>
                 <img src={funcionario.foto} alt={funcionario.nome} />
