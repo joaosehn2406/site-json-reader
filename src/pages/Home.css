@@ -1,5 +1,6 @@
 .main-container {
     padding: 120px 15vw;
+    max-height: 60vh;
     background-color: #d8d9e0;
 }
 
@@ -26,12 +27,14 @@
 .benefits-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     color: #333;
 }
 
 .benefits-list li {
     margin: 10px 0;
+    padding: 6px 0;
     font-size: 1rem;
 }
 
