@@ -24,10 +24,17 @@
 
 .ul-container li {
     font-size: 1.1rem;
+    text-decoration: none;
     color: #000000;
     cursor: pointer;
     transition: opacity 0.3s;
+
 }
+
+a, .link-home {
+    text-decoration: none;
+}
+
 
 .ul-container li:hover {
     opacity: 0.7;

@@ -3,7 +3,7 @@ import CardFuncionarios from '../CardFuncionario/CardFuncionario';
 
 function Funcionarios() {
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '50px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '50px', textDecoration: 'none' }}>
             {funfu.map((func) => (
                 <CardFuncionarios key={func.id} funcionario={func} />
             ))}
