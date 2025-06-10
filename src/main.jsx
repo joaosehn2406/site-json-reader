@@ -6,7 +6,7 @@ import './styles/index.css';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Home from './pages/Home.jsx';
-import Funcionarios from './pages/Funcionarios.jsx';
+import Funcionarios from './pages/Funcionarios.tsx';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>

@@ -7,7 +7,7 @@ function Footer() {
             <div className="footer-content">
                 <p>&copy; {new Date().getFullYear()} Nexa. Todos os direitos reservados.</p>
                 <p className="nomes-autores">
-                    Desenvolvido por <strong>João Pedro</strong>, <strong>Eduardo Essig</strong> e <strong>João Vitor</strong>
+                    Desenvolvido por <strong>João Pedro</strong>
                 </p>
                 <div className="footer-links">
                     <a href="#">Política de Privacidade</a>
