@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './Header.css';
 
 function LiHeader() {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/cadastro')
+    }
+
     return (
         <nav>
             <ul className="ul-container">
@@ -11,7 +17,7 @@ function LiHeader() {
             </ul>
             <div className="bt-container">
                 <button className="botao-login">Log in</button>
-                <button className="botao-cadastro">Register now</button>
+                <button onClick={handleClick} className="botao-cadastro">Register now</button>
             </div>
         </nav>
     );
