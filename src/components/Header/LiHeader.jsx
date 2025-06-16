@@ -17,7 +17,7 @@ function LiHeader() {
             </ul>
             <div className="bt-container">
                 <button className="botao-login">Log in</button>
-                <button onClick={handleClick} className="botao-cadastro">Register now</button>
+                <button onClick={handleClick} className="botao-cadastro">Cadastro</button>
             </div>
         </nav>
     );
