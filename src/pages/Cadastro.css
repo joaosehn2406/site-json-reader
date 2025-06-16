@@ -1,0 +1,99 @@
+.home-cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #edf3fb;
+    padding: 200px 20px;
+}
+
+.container-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 100px;
+    border-radius: 12px;
+    border: 1px solid #000000;
+    background-color: #1d3ce5;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.form-cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Label corrigido: agora é apenas um texto limpo */
+.label-nome {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.input-text {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    color: #333;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-text:focus {
+    border-color: #1d3ce5;
+    box-shadow: 0 0 0 3px rgba(29, 60, 229, 0.15);
+}
+
+.input-text::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.btn-consultar {
+    margin-top: 12px;
+    padding: 12px 32px;
+    background-color: #1d3ce5;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(29, 60, 229, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-consultar:hover {
+    background-color: #007ff3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 127, 243, 0.4);
+}
+
+.btn-consultar:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 127, 243, 0.3);
+}
+
+@media (max-width: 600px) {
+    .container-cadastro {
+        padding: 40px 20px;
+        width: 100%;
+    }
+
+    .input-text {
+        max-width: 100%;
+    }
+}
