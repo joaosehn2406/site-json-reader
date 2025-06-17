@@ -1,15 +1,21 @@
 import React from 'react';
+import './ModalCad.css'; // Estilos do Modal
 
-const ModalCad = ( { closeModal, children}) => {
+const Modal = ({ isOpen, closeModal, children }) => {
+    if (!isOpen) return null; // Não renderiza o modal se não estiver aberto
 
-    return(
+    return (
         <>
-        <div className="overlay" onClick={closeModal}></div>
+            {/* Overlay para escurecer o fundo */}
+            <div className="overlay" onClick={closeModal}></div>
+
+            {/* Modal */}
             <div className="modal">
-                {children} { }
+                {children} {/* Exibe o conteúdo passado como filho do Modal */}
                 <button onClick={closeModal}>Fechar</button>
             </div>
         </>
     );
 };
 
+export default Modal;
