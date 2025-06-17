@@ -1,18 +1,17 @@
 import React from 'react';
-import './ModalCad.css'; // Estilos do Modal
+import './ModalCad.css';
 
-const Modal = ({ isOpen, closeModal, children }) => {
-    if (!isOpen) return null; // Não renderiza o modal se não estiver aberto
+const Modal = ({ isOpen, closeModal, deleteInfo, children }) => {
+    if (!isOpen) return null;
 
     return (
         <>
-            {/* Overlay para escurecer o fundo */}
             <div className="overlay" onClick={closeModal}></div>
 
-            {/* Modal */}
             <div className="modal">
-                {children} {/* Exibe o conteúdo passado como filho do Modal */}
+                {children} {}
                 <button onClick={closeModal}>Fechar</button>
+                <button onClick={deleteInfo}>Excluir</button>
             </div>
         </>
     );
