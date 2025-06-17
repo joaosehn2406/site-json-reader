@@ -58,7 +58,7 @@ function Cadastro() {
                     </label>
                     <input
                         className="input-text"
-                        type="text"
+                        type="number"
                         name="input-id"
                         id="input-id"
                         placeholder="Digite o id desejado"
