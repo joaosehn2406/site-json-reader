@@ -10,8 +10,8 @@ const Modal = ({ isOpen, closeModal, deleteInfo, children }) => {
 
             <div className="modal">
                 {children} {}
-                <button onClick={closeModal}>Fechar</button>
-                <button onClick={deleteInfo}>Excluir</button>
+                <button className="bt-fechar" onClick={closeModal}>Fechar</button>
+                <button className="bt-excluir" onClick={deleteInfo}>Excluir</button>
             </div>
         </>
     );
