@@ -11,7 +11,8 @@ function Funcionarios() {
             alignContent: 'center',
             padding: '50px',
             textDecoration: 'none',
-            alignItems: 'center'
+            alignItems: 'center',
+            marginBottom: '150px'
         }}>
             {funfu.map((func) => (
                 <CardFuncionarios key={func.id} funcionario={func} />
