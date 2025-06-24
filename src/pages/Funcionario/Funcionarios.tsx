@@ -1,21 +1,22 @@
-import funfu from '../assets/FuncionarioList';
-import CardFuncionarios from '../components/CardFuncionario/CardFuncionario';
+import funfu from '../../assets/FuncionarioList.js';
+import CardFuncionario from '../../components/CardFuncionario/CardFuncionario.jsx';
 
 function Funcionarios() {
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignContent: 'center',
-            padding: '50px',
-            textDecoration: 'none',
-            alignItems: 'center',
-            marginBottom: '150px'
-        }}>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                alignContent: 'center',
+                padding: '50px',
+                textDecoration: 'none',
+                alignItems: 'center',
+            }}
+        >
             {funfu.map((func) => (
-                <CardFuncionarios key={func.id} funcionario={func} />
+                <CardFuncionario key={func.id} funcionario={func} />
             ))}
         </div>
     );
