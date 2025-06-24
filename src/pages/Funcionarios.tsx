@@ -1,5 +1,5 @@
 import funfu from '../assets/FuncionarioList';
-import CardFuncionarios from '../CardFuncionario/CardFuncionario';
+import CardFuncionarios from '../components/CardFuncionario/CardFuncionario';
 
 function Funcionarios() {
     return (

@@ -1,13 +1,14 @@
+// src/index.jsx
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import './styles/index.css';
+import "./styles/index.css";
 
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import Home from './pages/Home.jsx';
-import Funcionarios from './pages/Funcionarios.tsx';
-import Cadastro from './pages/Cadastro.jsx';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Home from './pages/Home';
+import Funcionarios from './pages/Funcionarios';
+import Cadastro from './pages/Cadastro';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>

@@ -1,69 +1,55 @@
-import './Cadastro.css';
 import React, { useState } from 'react';
+import './Cadastro.css';
 import Modal from '../components/Modal/ModalCad.jsx';
+import { getUserById } from '../services/userService';
 
 function Cadastro() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [inputId, setInputId] = useState('');
     const [userData, setUserData] = useState(null);
     const [statusMessage, setStatusMessage] = useState('');
     const [statusType, setStatusType] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setStatusMessage('');
-        setStatusType('');
-    };
-
-    const handleInputChange = (e) => {
-        setInputId(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
         setIsLoading(true);
         setStatusMessage('Carregando...');
         setUserData(null);
 
-        fetch(`https://bu.furb.br/mcardoso/progWeb/apiRestAval.php/cadastro/${inputId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data != null) {
-                    setUserData(data);
-                    setStatusMessage('Cadastro encontrado!');
-                    setStatusType('success');
-                } else {
-                    setStatusType('error');
-                }
-                setIsLoading(false);
-                openModal();
-            })
-            .catch((error) => {
-                setStatusMessage('Erro ao buscar dados!');
+        try {
+            const data = await getUserById(inputId);
+            if (data) {
+                setUserData(data);
+                setStatusMessage('Cadastro encontrado!');
+                setStatusType('success');
+            } else {
+                setStatusMessage('Nenhum cadastro encontrado');
                 setStatusType('error');
-                setIsLoading(false);
-                openModal();
-            });
+            }
+        } catch (err) {
+            setStatusMessage('Erro ao buscar dados!');
+            setStatusType('error');
+        } finally {
+            setIsLoading(false);
+            setIsModalOpen(true);
+        }
     };
 
     return (
         <main className="home-cadastro">
             <div className="container-cadastro">
                 <form className="form-cadastro" onSubmit={handleSubmit}>
-                    <label className="label-nome" htmlFor="input-id">
+                    <label htmlFor="input-id" className="label-nome">
                         Buscar cadastro
                     </label>
                     <input
                         className="input-text"
                         type="number"
-                        name="input-id"
                         id="input-id"
                         placeholder="Digite o id desejado"
                         value={inputId}
-                        onChange={handleInputChange}
+                        onChange={(e) => setInputId(e.target.value)}
                     />
                     <button type="submit" className="btn-consultar">
                         Consultar
@@ -71,7 +57,11 @@ function Cadastro() {
                 </form>
             </div>
 
-            <Modal isOpen={isModalOpen} closeModal={closeModal}>
+            <Modal
+                isOpen={isModalOpen}
+                closeModal={() => setIsModalOpen(false)}
+                deleteInfo={() => {}}
+            >
                 <h2>Informações do Cadastro</h2>
                 {isLoading ? (
                     <p>Carregando...</p>
@@ -88,8 +78,15 @@ function Cadastro() {
                 )}
 
                 {statusMessage && (
-                    <div style={{ backgroundColor: statusType === 'success' ? 'green' : 'red' }}>
-                        <p>{statusMessage}</p>
+                    <div
+                        style={{
+                            backgroundColor: statusType === 'success' ? 'green' : 'red',
+                            padding: '8px',
+                            marginTop: '12px',
+                            borderRadius: '4px',
+                        }}
+                    >
+                        <p style={{ color: '#fff' }}>{statusMessage}</p>
                     </div>
                 )}
             </Modal>
