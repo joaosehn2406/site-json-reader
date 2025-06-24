@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Cadastro.css';
-import Modal from '../components/Modal/ModalCad.jsx';
-import { getUserById } from '../services/userService';
+import Modal from '../../components/Modal/ModalCad.jsx';
+import { getUserById } from '../../services/userService.js';
 
 function Cadastro() {
     const [inputId, setInputId] = useState('');

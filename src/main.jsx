@@ -6,9 +6,9 @@ import "./styles/index.css";
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Home from './pages/Home';
-import Funcionarios from './pages/Funcionarios';
-import Cadastro from './pages/Cadastro';
+import Home from './pages/Home /Home.jsx';
+import Funcionarios from './pages/Funcionario/Funcionarios.js';
+import Cadastro from './pages/Cadastro/Cadastro.jsx';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
