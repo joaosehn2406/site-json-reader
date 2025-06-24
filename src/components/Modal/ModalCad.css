@@ -1,4 +1,4 @@
-.overlay {
+.modal__overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     z-index: 999;
 }
 
-.modal {
+.modal__container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -22,24 +22,29 @@
     text-align: center;
 }
 
-button {
+.modal__btn {
     padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 15px;
+    margin: 15px 8px 0;
+    transition: background-color 0.2s;
 }
 
-.bt-excluir {
-    background-color: red;
+.modal__btn--close {
+    background-color: #007bff;
+    color: white;
 }
 
-.bt-excluir:hover {
-    background-color: #7e0404;
-}
-
-button:hover {
+.modal__btn--close:hover {
     background-color: #0056b3;
+}
+
+.modal__btn--delete {
+    background-color: red;
+    color: white;
+}
+
+.modal__btn--delete:hover {
+    background-color: #7e0404;
 }
