@@ -1,7 +1,14 @@
-import { fetchUserById } from '../api/userApi';
+import {
+    fetchUserById,
+    deleteUserById as apiDeleteUserById,
+} from '../api/userApi.js';
 
 export async function getUserById(id) {
     if (!id) throw new Error('ID é obrigatório');
-    const data = await fetchUserById(id);
-    return data;
+    return fetchUserById(id);
+}
+
+export async function deleteUserById(id) {
+    if (!id) throw new Error('ID é obrigatório para exclusão');
+    return apiDeleteUserById(id);
 }

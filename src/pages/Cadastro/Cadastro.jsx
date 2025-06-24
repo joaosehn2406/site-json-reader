@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Cadastro.css';
 import Modal from '../../components/Modal/ModalCad.jsx';
-import { getUserById } from '../../services/userService.js';
+import { getUserById, deleteUserById } from '../../services/userService.js';
 
 function Cadastro() {
     const [inputId, setInputId] = useState('');
@@ -14,21 +14,34 @@ function Cadastro() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setStatusMessage('Carregando...');
         setUserData(null);
-
+        setStatusMessage('Carregando...');
+        setStatusType('');
         try {
             const data = await getUserById(inputId);
-            if (data) {
-                setUserData(data);
-                setStatusMessage('Cadastro encontrado!');
-                setStatusType('success');
-            } else {
-                setStatusMessage('Nenhum cadastro encontrado');
-                setStatusType('error');
-            }
+            setUserData(data);
+            setStatusMessage('Cadastro encontrado!');
+            setStatusType('success');
         } catch (err) {
-            setStatusMessage('Erro ao buscar dados!');
+            setStatusMessage(err.message);
+            setStatusType('error');
+        } finally {
+            setIsLoading(false);
+            setIsModalOpen(true);
+        }
+    };
+
+    const handleDelete = async () => {
+        setIsLoading(true);
+        setStatusMessage('Excluindo...');
+        setStatusType('');
+        try {
+            const { status, mensagem } = await deleteUserById(inputId);
+            setStatusMessage(mensagem);
+            setStatusType(status === 'success' ? 'success' : 'error');
+            if (status === 'success') setUserData(null);
+        } catch (err) {
+            setStatusMessage(err.message);
             setStatusType('error');
         } finally {
             setIsLoading(false);
@@ -45,26 +58,35 @@ function Cadastro() {
                     </label>
                     <input
                         className="input-text"
-                        type="number"
                         id="input-id"
+                        type="number"
                         placeholder="Digite o id desejado"
                         value={inputId}
                         onChange={(e) => setInputId(e.target.value)}
                     />
-                    <button type="submit" className="btn-consultar">
-                        Consultar
-                    </button>
+                    <div style={{ display: 'flex', gap: 10 }}>
+                        <button type="submit" className="btn-consultar">
+                            Consultar
+                        </button>
+                        <button
+                            type="button"
+                            className="btn-excluir"
+                            onClick={handleDelete}
+                        >
+                            Excluir
+                        </button>
+                    </div>
                 </form>
             </div>
 
             <Modal
                 isOpen={isModalOpen}
                 closeModal={() => setIsModalOpen(false)}
-                deleteInfo={() => {}}
+                deleteInfo={handleDelete}
             >
                 <h2>Informações do Cadastro</h2>
                 {isLoading ? (
-                    <p>Carregando...</p>
+                    <p>Processando...</p>
                 ) : userData ? (
                     <>
                         <p>ID: {userData.id}</p>
@@ -73,22 +95,18 @@ function Cadastro() {
                         <p>Endereço: {userData.endereco}</p>
                         <p>Email: {userData.email}</p>
                     </>
-                ) : (
-                    <p>{statusMessage}</p>
-                )}
-
-                {statusMessage && (
-                    <div
-                        style={{
-                            backgroundColor: statusType === 'success' ? 'green' : 'red',
-                            padding: '8px',
-                            marginTop: '12px',
-                            borderRadius: '4px',
-                        }}
-                    >
-                        <p style={{ color: '#fff' }}>{statusMessage}</p>
-                    </div>
-                )}
+                ) : null}
+                <div
+                    style={{
+                        marginTop: 16,
+                        padding: '8px',
+                        borderRadius: 4,
+                        backgroundColor: statusType === 'success' ? 'green' : 'red',
+                        color: '#fff',
+                    }}
+                >
+                    {statusMessage}
+                </div>
             </Modal>
         </main>
     );
