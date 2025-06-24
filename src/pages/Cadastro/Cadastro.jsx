@@ -11,12 +11,15 @@ function Cadastro() {
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const closeModal = () => setIsModalOpen(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         setUserData(null);
         setStatusMessage('Carregando...');
         setStatusType('');
+
         try {
             const data = await getUserById(inputId);
             setUserData(data);
@@ -33,19 +36,33 @@ function Cadastro() {
 
     const handleDelete = async () => {
         setIsLoading(true);
+        setStatusMessage('Verificando cadastro...');
+        setStatusType('');
+        setIsModalOpen(true);
+
+        try {
+            await getUserById(inputId);
+        } catch (err) {
+            setStatusMessage('ID inexistente. Tente novamente.');
+            setStatusType('error');
+            setIsLoading(false);
+            return;
+        }
+
+
         setStatusMessage('Excluindo...');
         setStatusType('');
         try {
             const { status, mensagem } = await deleteUserById(inputId);
+            const ok = String(status).toLowerCase() === 'ok';
             setStatusMessage(mensagem);
-            setStatusType(status === 'success' ? 'success' : 'error');
-            if (status === 'success') setUserData(null);
+            setStatusType(ok ? 'success' : 'error');
+            if (ok) setUserData(null);
         } catch (err) {
             setStatusMessage(err.message);
             setStatusType('error');
         } finally {
             setIsLoading(false);
-            setIsModalOpen(true);
         }
     };
 
@@ -64,7 +81,7 @@ function Cadastro() {
                         value={inputId}
                         onChange={(e) => setInputId(e.target.value)}
                     />
-                    <div style={{ display: 'flex', gap: 10 }}>
+                    <div className="botoes-form">
                         <button type="submit" className="btn-consultar">
                             Consultar
                         </button>
@@ -81,32 +98,28 @@ function Cadastro() {
 
             <Modal
                 isOpen={isModalOpen}
-                closeModal={() => setIsModalOpen(false)}
+                closeModal={closeModal}
                 deleteInfo={handleDelete}
             >
                 <h2>Informações do Cadastro</h2>
-                {isLoading ? (
-                    <p>Processando...</p>
-                ) : userData ? (
+
+                {isLoading && <p>Processando...</p>}
+
+                {!isLoading && userData && (
                     <>
-                        <p>ID: {userData.id}</p>
-                        <p>Nome: {userData.nome}</p>
-                        <p>Departamento: {userData.departamento}</p>
-                        <p>Endereço: {userData.endereco}</p>
-                        <p>Email: {userData.email}</p>
+                        <p><strong>ID:</strong> {userData.id}</p>
+                        <p><strong>Nome:</strong> {userData.nome}</p>
+                        <p><strong>Departamento:</strong> {userData.departamento}</p>
+                        <p><strong>Endereço:</strong> {userData.endereco}</p>
+                        <p><strong>Email:</strong> {userData.email}</p>
                     </>
-                ) : null}
-                <div
-                    style={{
-                        marginTop: 16,
-                        padding: '8px',
-                        borderRadius: 4,
-                        backgroundColor: statusType === 'success' ? 'green' : 'red',
-                        color: '#fff',
-                    }}
-                >
-                    {statusMessage}
-                </div>
+                )}
+
+                {statusMessage && (
+                    <div className={`status-message ${statusType}`}>
+                        {statusMessage}
+                    </div>
+                )}
             </Modal>
         </main>
     );

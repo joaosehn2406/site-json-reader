@@ -58,11 +58,10 @@
     font-style: italic;
 }
 
-.btn-consultar {
+.btn-consultar,
+.btn-excluir {
     margin-top: 12px;
     padding: 12px 32px;
-    background-color: #1d3ce5;
-    color: #fff;
     font-size: 1rem;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
@@ -70,9 +69,14 @@
     border-radius: 999px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(29, 60, 229, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+.btn-consultar {
+    background-color: #1d3ce5;
+    color: #fff;
 }
 
 .btn-consultar:hover {
@@ -81,9 +85,38 @@
     box-shadow: 0 8px 24px rgba(0, 127, 243, 0.4);
 }
 
-.btn-consultar:active {
-    transform: scale(0.98);
-    box-shadow: 0 4px 12px rgba(0, 127, 243, 0.3);
+.btn-excluir {
+    background-color: #c0392b;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.btn-excluir:hover {
+    background-color: #962d22;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.botoes-form {
+    display: flex;
+    gap: 10px;
+}
+
+
+.status-message {
+    color: #fff;
+    padding: 8px;
+    margin-top: 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-message.success {
+    background-color: #27ae60;
+}
+
+.status-message.error {
+    background-color: #e74c3c;
 }
 
 @media (max-width: 600px) {
