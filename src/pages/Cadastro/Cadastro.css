@@ -59,7 +59,8 @@
 }
 
 .btn-consultar,
-.btn-excluir {
+.btn-excluir, 
+.btn-alterar {
     margin-top: 12px;
     padding: 12px 32px;
     font-size: 1rem;
@@ -75,18 +76,29 @@
 }
 
 .btn-consultar {
-    background-color: #1d3ce5;
+    background-color: #007ff3;
     color: #fff;
 }
 
 .btn-consultar:hover {
-    background-color: #007ff3;
+    background-color: #74b6f4;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 127, 243, 0.4);
 }
 
+.btn-alterar:hover {
+    background-color: #74b6f4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 127, 243, 0.4);
+}
 .btn-excluir {
     background-color: #c0392b;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.btn-alterar {
+    background-color: #007ff3;
     color: #fff;
     margin-left: 10px;
 }

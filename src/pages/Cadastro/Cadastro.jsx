@@ -66,6 +66,38 @@ function Cadastro() {
         }
     };
 
+    const handleUpdate = async () => {
+        setIsLoading(true);
+        setStatusMessage('Verificando cadastro...');
+        setStatusType('');
+        setIsModalOpen(true);
+
+        try {
+            await getUserById(inputId);
+        } catch (err) {
+            setStatusMessage('ID inexistente. Tente novamente.');
+            setStatusType('error');
+            setIsLoading(false);
+            return;
+        }
+
+
+        setStatusMessage('Excluindo...');
+        setStatusType('');
+        try {
+            const { status, mensagem } = await deleteUserById(inputId);
+            const ok = String(status).toLowerCase() === 'ok';
+            setStatusMessage(mensagem);
+            setStatusType(ok ? 'success' : 'error');
+            if (ok) setUserData(null);
+        } catch (err) {
+            setStatusMessage(err.message);
+            setStatusType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <main className="home-cadastro">
             <div className="container-cadastro">
@@ -82,14 +114,22 @@ function Cadastro() {
                         onChange={(e) => setInputId(e.target.value)}
                     />
                     <div className="botoes-form">
-                        <button type="submit" className="btn-consultar">
+                        <button
+                            type="submit"
+                            className="btn-consultar"
+                            onClick={handleSubmit}>
                             Consultar
                         </button>
                         <button
                             type="button"
+                            className="btn-alterar"
+                            onClick={handleUpdate}>
+                            Alterar
+                        </button>
+                        <button
+                            type="button"
                             className="btn-excluir"
-                            onClick={handleDelete}
-                        >
+                            onClick={handleDelete}>
                             Excluir
                         </button>
                     </div>
