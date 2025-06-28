@@ -48,3 +48,8 @@
 #modal-root .bt-alterar:hover {
     background-color: #7e0404;
 }
+
+#modal-root .modal button {
+    font-family: "Poppins", serif;
+    font-size: medium;
+}

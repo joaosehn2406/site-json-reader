@@ -35,3 +35,31 @@ export async function deleteUserById(id) {
     }
     return res.json();
 }
+
+export async function updateUserById(id, data) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      nome: data.nome,
+      endereco: data.endereco,
+      email: data.email,
+      departamento: data.departamento
+    })
+  });
+
+  if (!res.ok) {
+    let err;
+    try {
+      const json = await res.json();
+      err = new Error(json.mensagem || 'Erro ao atualizar cadastro');
+    } catch {
+      err = new Error('Erro ao atualizar cadastro');
+    }
+    throw err;
+  }
+
+  return true;
+}

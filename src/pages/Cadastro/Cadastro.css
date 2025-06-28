@@ -59,7 +59,7 @@
 }
 
 .btn-consultar,
-.btn-excluir, 
+.btn-excluir,
 .btn-alterar {
     margin-top: 12px;
     padding: 12px 32px;
@@ -91,6 +91,7 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 127, 243, 0.4);
 }
+
 .btn-excluir {
     background-color: #c0392b;
     color: #fff;
@@ -140,4 +141,60 @@
     .input-text {
         max-width: 100%;
     }
+}
+
+.form-edit .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-edit label,
+.form-edit strong {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.form-edit input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form-edit input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.form-edit {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.btn-save {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.5rem 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+.form-edit .form-group input {
+  text-align: center;
+  background-color: white;
+  border-color: black;
+  border-radius: 15px;
 }
